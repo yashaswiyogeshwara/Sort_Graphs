@@ -86,6 +86,8 @@ namespace SortImplementation
             private bool _doSort = true;
             public Chart _chart;
             private List<List<int>> _iterations = new List<List<int>>();
+            private DateTime _startTime = new DateTime(1960,01,01);
+            private TimeSpan _executionTime = TimeSpan.Zero;
             public MergeSort(Chart chart)
             {
                 _chart = chart;
@@ -112,11 +114,18 @@ namespace SortImplementation
 
             private async void GetSortedArrList(List<int[]> arrList)
             {
+                if (_startTime.Year == 1960)
+                {
+                    _startTime = DateTime.Now;
+                }
                 if (arrList[0].Length == _elemCount)
                 {
                     _doSort = false;
+                    DateTime endTime = DateTime.Now;
+                    _executionTime = endTime - _startTime;
                     _sortedArr = arrList[0];
                 }
+
                 if (_doSort)
                 {
                     List<int[]> sortedArr = new List<int[]>();
@@ -125,7 +134,7 @@ namespace SortImplementation
                     for (; i < arrList.Count - 1; i = i + 2)
                     {
                         int temp = i;
-                        int[] tempArr= await Task.Run(() => merge(arrList[temp], arrList[temp + 1]));
+                        int[] tempArr = await merge(arrList[temp], arrList[temp + 1]);
                         sortedArr.Add(tempArr);
                     }
                     if (arrList.Count % 2 > 0)
@@ -153,13 +162,16 @@ namespace SortImplementation
                 _iterations.Add(yNum);
             }
 
-            private int[] merge(int[] leftArr, int[] rightArr)
+            private Task<int[]> merge(int[] leftArr, int[] rightArr)
             {
-               
+
+                return Task.Run(() =>
+                {
                     int[] arr = new int[leftArr.Length + rightArr.Length];
                     SortArr(leftArr, rightArr, ref arr, 0);
                     return arr;
-                
+                });
+
             }
 
             private void SortArr(int[] leftArr, int[] rightArr, ref int[] arr, int k)

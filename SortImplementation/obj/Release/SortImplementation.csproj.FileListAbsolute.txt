@@ -6,3 +6,4 @@ C:\Users\yogeshwaray\Documents\Visual Studio 2012\Projects\SortImplementation\So
 C:\Users\yogeshwaray\Documents\Visual Studio 2012\Projects\SortImplementation\SortImplementation\obj\Release\SortImplementation.csproj.GenerateResource.Cache
 C:\Users\yogeshwaray\Documents\Visual Studio 2012\Projects\SortImplementation\SortImplementation\obj\Release\SortImplementation.exe
 C:\Users\yogeshwaray\Documents\Visual Studio 2012\Projects\SortImplementation\SortImplementation\obj\Release\SortImplementation.pdb
+C:\Users\yogeshwaray\Documents\Visual Studio 2012\Projects\SortImplementation\SortImplementation\obj\Release\SortImplementation.csprojResolveAssemblyReference.cache
